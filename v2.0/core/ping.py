@@ -1,10 +1,11 @@
-import requests
+from ping3 import ping
 import time
 
-def get_ping(URL = "https://www.google.com") -> int:
+def get_ping(HOST = "www.google.com") -> int:
     try:
-        strt = time.time()
-        requests.get(URL, timeout=3)
-        return int((time.time() - strt) * 1000)
-    except:
+        res = ping(HOST, timeout=3, unit="ms")
+        if res is None or res is False:
+            return -1
+        return int(res)
+    except Exception:
         return -1
