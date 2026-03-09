@@ -1,5 +1,4 @@
 from ping3 import ping
-import time
 
 def get_ping(HOST = "www.google.com") -> int:
     try:
