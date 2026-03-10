@@ -104,4 +104,4 @@ def stop():
     player.stop()
 
 def now_playing():
-    print(f"Now: {data[index].get("name")}\nCountry: {data[index].get("name")}\n")
+    print(f"Now: {data[index].get("name")}\nCountry: {data[index].get("country")}\n")
