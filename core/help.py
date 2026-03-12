@@ -1,122 +1,74 @@
 HELP_PAGE = """
-════════════════════════════════════════════════════════════
-                     PX7 TERMINAL RADIO
-════════════════════════════════════════════════════════════
+════════════════════════════════════════════════════════════════════════
+                         PX7 TERMINAL RADIO
+════════════════════════════════════════════════════════════════════════
 
 Stream internet radio directly from your terminal.
 
-Basic workflow:
-    1. Search stations
-    2. Select station number
-    3. Play and control playback
+────────────────────────────────────────────────────────────────────────
+SEARCH STATIONS
+────────────────────────────────────────────────────────────────────────
 
-────────────────────────────────────────────────────────────
-SEARCH
-────────────────────────────────────────────────────────────
-
-Search stations by name
-
+Basic Search
     >> radio search <name>
+    (Example: >> radio search lofi)
 
-Example
-    >> radio search lofi
-    >> radio search bbc
-
-
-Search using API filters
-
+Filtered Search
     >> radio search [OPTIONS] <name>
+    (Example: >> radio search --tag=jazz --limit=10)
 
-Examples
-    >> radio search --tag=lofi
-    >> radio search --tag=jazz --limit=10
-    >> radio search --country=Japan
-    >> radio search --order=clickcount
-    >> radio search --order=votes --reverse=true
+Common Search Options:
+    --tag=TAG           Filter by genre (rock, techno, etc)
+    --country=NAME      Filter by country name
+    --limit=N           Limit number of results (Default: 100)
+    --reverse=true      Reverse the sorting order
+    --order=ORDER       Sort by: name, votes, clickcount, bitrate
 
-More filters can be found at :: https://api.radio-browser.info
+Advanced Filters:
+    For more options like --codec, --bitrate, or --language, see:
+    https://api.radio-browser.info
 
-────────────────────────────────────────────────────────────
-SEARCH OPTIONS
-────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────
+PLAYBACK CONTROLS
+────────────────────────────────────────────────────────────────────────
 
---tag=TAG            Filter by tag / genre
---country=NAME       Filter by country
---language=LANG      Filter by language
---limit=N            Limit number of results
---reverse=true       Reverse order
-
-Sort results
-
---order=name
---order=country
---order=language
---order=votes
---order=clickcount
---order=bitrate
---order=codec
---order=lastcheckok
-
-Example
-
-    >> radio search --tag=rock --order=clickcount --limit=10
-
-────────────────────────────────────────────────────────────
-PLAYBACK
-────────────────────────────────────────────────────────────
-
-Play a station
-
+Start Playing
     >> play <number>
+    (Example: >> play 1)
 
-If the stream fails to load, try increasing the response wait time:
-
+Adjust Timeout
     >> play <number> --timeout=10
-    (Default is 5s. Use this for slow networks or unstable servers.)
+    (Use for slow connections; default is 5s)
 
-Pause playback
+Playback Management
+    >> pause            Pause the current stream
+    >> resume           Resume the current stream
+    >> stop             Stop playback entirely
 
-    >> pause
+────────────────────────────────────────────────────────────────────────
+STATION INFO
+────────────────────────────────────────────────────────────────────────
 
-Resume playback
+View Status
+    >> show cur             Display Name, Country, and Bitrate
+    >> show cur --expose    Show all info including Stream URL
 
-    >> resume
+────────────────────────────────────────────────────────────────────────
+UTILITY & SYSTEM
+────────────────────────────────────────────────────────────────────────
 
-Stop playback
+Network Check
+    >> ping             Check your connection latency
 
-    >> stop
+Exit Application
+    >> exit | quit | logout
 
-Show current station
-
-    >> show
-
-────────────────────────────────────────────────────────────
-UTILITY
-────────────────────────────────────────────────────────────
-
-Check network ping
-
-    >> ping
-
-Exit application
-
-    >> exit
-    >> quit
-    >> logout
-
-────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────
 EXAMPLE SESSION
-────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────
 
->> radio search --tag=lofi --order=clickcount --limit=5
-
-No.   Station name
-1     Lofi Beats
-2     Chillhop Radio
-3     Sleepy Beats
-4     Coffee Jazz
-5     Tokyo Lofi
-
->> play 1
-Playing
+    >> radio search --tag=lofi --limit=5
+    >> play 1
+    >> show cur --expose
+    >> stop
 """

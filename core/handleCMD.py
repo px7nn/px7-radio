@@ -1,5 +1,6 @@
 import requests as rq
 from . import ping, media_manager, help
+import config
 import threading, sys, time
 
 done = False
@@ -23,7 +24,7 @@ def handle_cmd(cmd: dict):
         if not cmd.get('action'):
             print("Command: play <indx>")
             return None
-        timeout = int(cmd.get('timeout')) if cmd.get('timeout') else 5
+        timeout = int(cmd.get('timeout')) if cmd.get('timeout') else config.DEFAULT_TIMEOUT
         media_manager.play(int(cmd.get('action')) - 1, timeout)
     
     elif cmd.get('sys') == "pause":
@@ -33,7 +34,12 @@ def handle_cmd(cmd: dict):
     elif cmd.get('sys') == "stop":
         media_manager.stop()
     elif cmd.get('sys') == "show":
-        media_manager.now_playing()
+        cmd.pop('sys')
+        if cmd.get('action') == "current" or cmd.get('action') == "cur":
+            cmd.pop('action')
+            cmd.pop('name')
+            media_manager.show_playing(cmd)
+        
 
     elif cmd.get('sys') == "radio":
         cmd.pop('sys')
@@ -54,13 +60,14 @@ def handle_cmd(cmd: dict):
 def search(params: dict):
     if params.get("name") == None and len(params) == 1:
         return None
+    if not params.get("limit"):
+        params['limit'] = config.DEFAULT_SEARCH_LIMIT
     global done
     done = False
     T = threading.Thread(target=preloader, daemon=True)
     T.start()
     try:
-        url = "https://de1.api.radio-browser.info/json/stations/search"
-        res = rq.get(url, params=params, timeout=10)
+        res = rq.get(config.API_URL, params=params, timeout=10)
         if not res.ok:
             print("Server Error")
             return None

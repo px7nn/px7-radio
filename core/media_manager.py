@@ -1,8 +1,27 @@
-import vlc, sys, threading, time
+import vlc, sys, threading, time, os
+
+sys.stderr = open(os.devnull, "w")
+
+def check_vlc():
+    try:
+        vlc.Instance()
+    except:
+        print("Error: VLC Media Player is not installed or not found in system PATH.")
+        print("-" * 50)
+
+        if sys.platform.startswith('win'):
+            print("Download Windows version: https://www.videolan.org")
+        elif sys.platform.startswith('darwin'):
+            print("Download macOS version: https://www.videolan.org")
+        else:
+            print("Install via your package manager (e.g., sudo apt install vlc)")
+        print("-" * 50)
+        
+        exit(1)
 
 class Player:
     def __init__(self):
-        self.Instance = vlc.Instance('-q')
+        self.Instance = vlc.Instance("--quiet --no-xlib --log-verbose=0")
         self.Player = self.Instance.media_player_new()
     def play(self, url):
         self.stop()
@@ -20,7 +39,7 @@ class Player:
         return self.Player
 
 data = []
-index = 0
+index = None
 done = True
 text = ""
 player = Player()
@@ -40,9 +59,9 @@ def extract_data(dat: list):
     data = []
     for d in dat:
         station = {
-            "name": d.get("name")[:40].strip(),
+            "name": d.get("name")[:35].strip(),
             "country": d.get("country"),
-            "bitrate": d.get("bitrate"),
+            "bitrate": d.get("bitrate") if d.get("bitrate") != 0 else "N.A.",
             "url": d.get("url_resolved")
         }
         data.append(station)
@@ -52,9 +71,9 @@ def show_data(dat: list):
     length = len(data)
     if length == 0:
         return None
-    print("No.\t Station name")
-    for i in range(length):
-        print(f"{i+1}\t {data[i].get("name")}")
+    print(f"{'No.':<4} {'Station name':<40} {'Bitrate':<8}")
+    for i, station in enumerate(data, 1):
+        print(f"{i:<4} {station.get("name"):<40} {station.get("bitrate"):<8}")
     print()
 
 def play(indx, timeout):
@@ -85,8 +104,7 @@ def play(indx, timeout):
     done = True
     T1.join()
     if player.get_player().is_playing():
-        print("Playing")
-        now_playing()
+        print("Now Playing:", data[indx].get("name"))
     else:
         stop()
         print(
@@ -106,5 +124,17 @@ def resume():
 def stop():
     player.stop()
 
-def now_playing():
-    print(f"Now: {data[index].get("name")}\nCountry: {data[index].get("country")}\n")
+def show_playing(params: dict, expose=False):
+    if not data or index == None:
+        print("Error: List Empty:\nUse after:\n\t>> radio search <name>\n\t>> play <index>")
+        return
+    if not params:
+        print(f"Current station: {data[index].get('name')}")
+        print(f"Country: {data[index].get('country')}")
+        print(f"Bitrate: {data[index].get('bitrate')}")
+        if expose:
+            print(f"URL: {data[index].get('url')}")
+        return
+    if params.get("expose"):
+        params.pop('expose')
+        show_playing({}, True)

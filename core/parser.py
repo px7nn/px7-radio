@@ -19,9 +19,9 @@ def parse(inp: str):
 
         for i in tokens[2:]:
             if i.startswith("--"):
-                key, val = i.split("=", 1)
+                key, sep ,val = i.partition("=")
                 key = key[2:]
-                flags[key] = val
+                flags[key] = val if sep else True
             else:
                 name_parts.append(i)
 
