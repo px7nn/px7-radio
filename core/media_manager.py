@@ -26,7 +26,7 @@ vlc = check_vlc()
 
 class Player:
     def __init__(self):
-        self.Instance = vlc.Instance("--quiet --no-xlib --log-verbose=0")
+        self.Instance = vlc.Instance("--quiet --no-xlib --log-verbose=0 --no-video")
         self.Player = self.Instance.media_player_new()
     def play(self, url):
         self.stop()
@@ -45,6 +45,7 @@ class Player:
 
 data = []
 index = None
+src = ""
 done = True
 text = ""
 player = Player()
@@ -60,25 +61,37 @@ def preloader():
     sys.stdout.flush()
 
 def extract_data(dat: list):
-    global data, done
+    global data
     data = []
     for d in dat:
         station = {
             "name": d.get("name")[:35].strip(),
-            "country": d.get("country"),
+            "from": d.get("country"),
             "bitrate": d.get("bitrate") if d.get("bitrate") != 0 else "N.A.",
             "url": d.get("url_resolved")
         }
         data.append(station)
 
 def show_data(dat: list):
+    global src
+    src = "radio"
     extract_data(dat)
-    length = len(data)
-    if length == 0:
+    if len(data) == 0:
         return None
     print(f"{'No.':<4} {'Station name':<40} {'Bitrate':<8}")
     for i, station in enumerate(data, 1):
         print(f"{i:<4} {station.get('name'):<40} {station.get('bitrate'):<8}")
+    print()
+
+def show_data_yt(dat: list):
+    global data, src
+    src = "yt"
+    data = dat
+    if len(dat) == 0:
+        return None
+    print(f"{'No.':<4} {'Title':<40}")
+    for i, source in enumerate(data, 1):
+        print(f"{i:<4} {source.get('name'):<40}")
     print()
 
 def play(indx, timeout):
@@ -134,8 +147,8 @@ def show_playing(params: dict, expose=False):
         print("Error: List Empty:\nUse after:\n\t>> radio search <name>\n\t>> play <index>")
         return
     if not params:
-        print(f"Current station: {data[index].get('name')}")
-        print(f"Country: {data[index].get('country')}")
+        print(f"Title: {data[index].get('name')}")
+        print(f"From: {data[index].get('from')}")
         print(f"Bitrate: {data[index].get('bitrate')}")
         if expose:
             print(f"URL: {data[index].get('url')}")

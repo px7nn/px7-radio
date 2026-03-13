@@ -1,5 +1,6 @@
 from . import ping, media_manager
 import sys, os, time, threading
+from config import HIDE_ERR
 
 done = False
 
@@ -16,8 +17,9 @@ banner = """
 def welcome():
     print(banner)
     media_manager.check_vlc()
-    devnull = open(os.devnull, "w")
-    sys.stderr = devnull
+    if HIDE_ERR:
+        devnull = open(os.devnull, "w")
+        sys.stderr = devnull
     connection_status()
     print(f"\nBasic commands:\n\t>> radio search <station name>\n\t>> play <station no.>\n\t>> pause\n\t>> ping\nFor more commands try:\n\t>> radio --help\n")
 

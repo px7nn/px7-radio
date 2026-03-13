@@ -1,24 +1,26 @@
-import requests as rq
 from . import ping, media_manager, help
+from servics import radio_service as rs
+from servics import youtube_service as ys
 import config
-import threading, sys, time
-
-done = False
-
-def preloader():
-    i = 1
-    while not done:
-        sys.stdout.write("\r\033[KSearching" + ". " * (i % 4))
-        sys.stdout.flush()
-        i+=1
-        time.sleep(0.2)
-    sys.stdout.write("\r\033[K")
-    sys.stdout.flush()
 
 def handle_cmd(cmd: dict):
     if cmd.get('sys') == "ping":
         print(f"pong: {ping.get_ping()} ms")
         return None
+    
+    elif cmd.get('sys') == "yt":
+        cmd.pop('sys')
+        if cmd.get('action') == "search":
+            cmd.pop('action')
+            if not cmd.get("name"):
+                print("Error: Empty query. USAGE:\n\t>> yt search <query>")
+                return
+            dat = ys.search_yt(cmd.pop("name"), cmd)
+            if not dat:
+                return
+            media_manager.show_data_yt(dat)
+
+
     
     elif cmd.get('sys') == "play":
         if not cmd.get('action'):
@@ -48,7 +50,7 @@ def handle_cmd(cmd: dict):
             return
         elif cmd.get('action') == "search":
             cmd.pop('action')
-            dat = search(cmd)
+            dat = rs.search(cmd)
             if not dat:
                 return
             media_manager.show_data(dat)
@@ -56,29 +58,3 @@ def handle_cmd(cmd: dict):
     else:
         print("Unknown command")
         return None
-
-def search(params: dict):
-    if params.get("name") == None and len(params) == 1:
-        return None
-    if not params.get("limit"):
-        params['limit'] = config.DEFAULT_SEARCH_LIMIT
-    global done
-    done = False
-    T = threading.Thread(target=preloader, daemon=True)
-    T.start()
-    try:
-        res = rq.get(config.API_URL, params=params, timeout=10)
-        if not res.ok:
-            print("Server Error")
-            return None
-        dat = res.json()
-        done = True
-        T.join()
-        print(f"Found: {len(dat)} station(s)\n")
-        return dat
-    except Exception as e:
-        done = True
-        T.join()
-        print("Error:", e)
-        return None
-        
