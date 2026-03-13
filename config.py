@@ -1,5 +1,5 @@
 #FOR DEVELOPMENT
-HIDE_ERR = False
+HIDE_ERR = True
 
 API_URL = "https://de1.api.radio-browser.info/json/stations/search"
 

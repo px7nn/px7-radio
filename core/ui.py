@@ -21,7 +21,7 @@ def welcome():
         devnull = open(os.devnull, "w")
         sys.stderr = devnull
     connection_status()
-    print(f"\nBasic commands:\n\t>> radio search <station name>\n\t>> play <station no.>\n\t>> pause\n\t>> ping\nFor more commands try:\n\t>> radio --help\n")
+    print(f"\nBasic commands:\n\t>> radio search <station name>\n\t>> play <station no.>\n\t>> pause\n\t>> ping\nFor more commands try:\n\t>> help\n")
 
 
 def connection_status():

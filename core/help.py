@@ -3,10 +3,10 @@ HELP_PAGE = """
                          PX7 TERMINAL RADIO
 ════════════════════════════════════════════════════════════════════════
 
-Stream internet radio directly from your terminal.
+Stream internet radio and YouTube audio directly from your terminal.
 
 ────────────────────────────────────────────────────────────────────────
-SEARCH STATIONS
+RADIO STATION SEARCH
 ────────────────────────────────────────────────────────────────────────
 
 Basic Search
@@ -27,6 +27,34 @@ Common Search Options:
 Advanced Filters:
     For more options like --codec, --bitrate, or --language, see:
     https://api.radio-browser.info
+
+────────────────────────────────────────────────────────────────────────
+YOUTUBE SEARCH
+────────────────────────────────────────────────────────────────────────
+
+Search YouTube Audio
+    >> yt search <query>
+    (Example: >> yt search joji)
+
+Search Options
+    >> yt search <query> --limit=N
+    >> yt search <query> --no-postfix
+
+Options:
+    --limit=N           Limit results (Default: 5)
+    --no-postfix        Disable automatic query postfix
+
+Default Behavior:
+    By default, searches modify the query with:
+        query += DEFAULT_QUERY_POSTFIX
+
+    This helps return better audio-focused results
+    (for example official audio tracks or long mixes).
+
+Examples:
+    >> yt search joji
+    >> yt search techno mix --limit=10
+    >> yt search the weeknd --no-postfix
 
 ────────────────────────────────────────────────────────────────────────
 PLAYBACK CONTROLS
@@ -71,4 +99,7 @@ EXAMPLE SESSION
     >> play 1
     >> show cur --expose
     >> stop
+
+    >> yt search joji
+    >> play 1
 """

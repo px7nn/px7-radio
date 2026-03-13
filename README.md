@@ -107,16 +107,17 @@ https://www.radio-browser.info/
 
 PX7 Terminal Radio can also stream audio from YouTube search results directly in the terminal.
 
-| Command                          | Description                        |
-| -------------------------------- | ---------------------------------- |
-| `yt search <query>`              | Search YouTube and stream results  |
-| `yt search <query> --no-postfix` | Search without modifying the query |
+| Command                              | Description                               |
+| ------------------------------------ | ----------------------------------------- |
+| `yt search <query>`                  | Search YouTube and stream results         |
+| `yt search <query> --limit=<number>` | Limit the number of search results        |
+| `yt search <query> --no-postfix`     | Search without modifying the query        |
 
 #### Default Query Postfix
 
 By default, the command:
 ```
-yt search <query>
+>> yt search <query>
 ```
 internally modifies the query:
 ```
@@ -126,9 +127,9 @@ query += DEFAULT_QUERY_POSTFIX
 This helps return better audio-focused results (for example music or long mixes).
 
 If you want to search YouTube without modifying the query, use:
-
-yt search <query> --no-postfix
-
+```
+>> yt search <query> --no-postfix
+```
 Example:
 ```
 >> yt search joji

@@ -8,6 +8,10 @@ def handle_cmd(cmd: dict):
         print(f"pong: {ping.get_ping()} ms")
         return None
     
+    elif cmd.get('sys') == "--help" or cmd.get('sys') == "help":
+        print(help.HELP_PAGE)
+        return
+    
     elif cmd.get('sys') == "yt":
         cmd.pop('sys')
         if cmd.get('action') == "search":
@@ -19,8 +23,6 @@ def handle_cmd(cmd: dict):
             if not dat:
                 return
             media_manager.show_data_yt(dat)
-
-
     
     elif cmd.get('sys') == "play":
         if not cmd.get('action'):
@@ -45,10 +47,10 @@ def handle_cmd(cmd: dict):
 
     elif cmd.get('sys') == "radio":
         cmd.pop('sys')
-        if cmd.get('action') == "--help":
-            print(help.HELP_PAGE)
-            return
-        elif cmd.get('action') == "search":
+        # if cmd.get('action') == "--help":
+        #     print(help.HELP_PAGE)
+        #     return
+        if cmd.get('action') == "search":
             cmd.pop('action')
             dat = rs.search(cmd)
             if not dat:
