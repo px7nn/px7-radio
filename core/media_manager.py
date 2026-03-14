@@ -1,5 +1,5 @@
 import sys, threading, time
-from servics import youtube_service as ys
+from services import youtube_service as ys
 
 def check_vlc():
     try:
@@ -132,8 +132,8 @@ def play(indx, timeout):
         stop()
         print(
             "Stream failed to respond.\n"
-            "Possible causes: slow network or unresponsive station.\n"
-            "Tip: try another station or increase timeout (>> play <index> --timeout=10)."
+            "Possible causes: slow network.\n"
+            "Tip: try another stream or increase timeout (>> play <index> --timeout=10)."
         )
 
 def pause():

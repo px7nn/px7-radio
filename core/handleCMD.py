@@ -1,6 +1,6 @@
 from . import ping, media_manager, help
-from servics import radio_service as rs
-from servics import youtube_service as ys
+from services import radio_service as rs
+from services import youtube_service as ys
 import config
 
 def handle_cmd(cmd: dict):
