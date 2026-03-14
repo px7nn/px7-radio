@@ -4,11 +4,6 @@ from servics import youtube_service as ys
 def check_vlc():
     try:
         import vlc
-    except ImportError:
-        print("Error: python-vlc module is not installed.")
-        print("Install it with: pip install python-vlc")
-        sys.exit(1)
-    try:
         vlc.Instance()
     except Exception:
         print("Error: VLC Media Player is not installed or not found in system PATH.")
