@@ -1,6 +1,6 @@
 import threading, sys, time
 import requests as rq
-import config
+import px7_radio.config as config
 
 done = False
 

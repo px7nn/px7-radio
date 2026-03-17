@@ -1,5 +1,20 @@
+# Byte-compiled / cache
 __pycache__/
-*.pyc
+*.py[cod]
 
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
 venv/
-.env
+.env/
+
+# IDE / OS files
+.vscode/
+.idea/
+.DS_Store
+
+# Python cache folders inside src
+**/__pycache__/

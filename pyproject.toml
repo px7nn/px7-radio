@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "px7-radio"
+version = "0.1.1"
+description = "Terminal-based internet radio player"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    { name = "px7nn", email = "px7nnn@gmail.com"}
+]
+
+dependencies = [
+    "requests",
+    "ping3",
+    "python-vlc",
+    "yt-dlp"
+]
+
+[project.scripts]
+px7-radio = "px7_radio.main:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

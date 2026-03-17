@@ -1,4 +1,4 @@
-from core import ui, parser, handleCMD
+from .core import ui, parser, handleCMD
 
 def manage_input():
     while True:
@@ -15,4 +15,3 @@ def main():
     ui.welcome()
     manage_input()
         
-main()

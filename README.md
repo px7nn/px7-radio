@@ -1,142 +1,133 @@
+# 🎧 PX7 Terminal Radio
+
 ![PX7 Terminal Radio](https://github.com/user-attachments/assets/d2737200-ebd8-4736-b460-c9af140e8137)
 
-# PX7 Terminal Radio
+PX7 Terminal Radio is a lightweight, feature-rich **command-line internet radio player** built in Python.
 
-PX7 Terminal Radio is a lightweight **command-line internet radio player** written in Python. 
-It allows you to **search, stream, and control thousands of online radio stations directly from your terminal.**, and now also supports **streaming audio from YouTube search results.**
+It lets you **search, stream, and control thousands of radio stations directly from your terminal**, with added support for **streaming audio from YouTube search results**.
 
-Stations are fetched using the **Radio Browser API**, and playback is handled through **VLC**.
-
-## Table of Contents
-
-- [Features](#features)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Radio Commands](#radio-commands)
-- [YouTube Commands](#youtube-commands)
-- [License](#license)
+Powered by the **Radio Browser API** and **VLC**, PX7 delivers a fast and minimal listening experience without leaving your terminal.
 
 
 ## Features
 
-**New Feature**
-- Search and stream audio from YouTube
+* Search and stream internet radio stations
+* Filter stations by **tag, country, language, bitrate, and more**
+* Sort results using API parameters (votes, click count, etc.)
+* Playback controls: **play, pause, resume, stop**
+* Lightweight and fast CLI interface
+* Stream audio directly from **YouTube search results**
 
-**Legacy Features**
-- Search internet radio stations  
-- Stream radio directly from the terminal  
-- Filter and sort stations using API options  
-- Control playback (play, pause, resume, stop)  
-- Lightweight command-line interface
 
----
 ## Requirements
 
-- Python 3.9+
-- VLC Media Player
+* Python **3.9+**
+* **VLC Media Player** (required for audio playback)
 
-## Installation
 
-### 1. Clone the repository:
-If you just want to use:
+## 📦 Installation
+
+### Install via pip (Recommended)
+
 ```
-git clone --depth 1 https://github.com/px7nn/px7-radio.git
-cd px7-radio
+pip install px7-radio
 ```
-else:
+
+
+## 🚀 Usage
+
+Start the application:
+
 ```
-git clone https://github.com/px7nn/px7-radio.git
-cd px7-radio
+px7-radio
 ```
-### 2. Install Python dependencies
-```
-pip install -r requirements.txt
-```
-### 3. Run the application
-```
-python main.py
-```
-After starting, you will see the terminal prompt:
+
+You will see a prompt:
+
 ```
 >>
 ```
-You can now search and play radio stations.
-Example:
-```
->> radio search lofi
->> play 1
-```
 
-### Usage
+---
 
-![Screenshot](https://github.com/user-attachments/assets/eb1b5da1-c710-4570-973d-9e59179c7072)
-
-### Radio Commands
-
-| Command                                 | Description                                     |
-| --------------------------------------- | ----------------------------------------------- |
-| `radio search <query>`                  | Search radio stations by name                   |
-| `radio search --tag=<tag>`              | Search stations by tag (e.g., jazz, lofi)       |
-| `radio search --country=<country>`      | Filter stations by country                      |
-| `radio search --language=<language>`    | Filter stations by language                     |
-| `radio search --limit=<number> <query>` | Limit the number of results                     |
-| `radio search --order=votes`            | Sort results (e.g., clickcount, votes, bitrate) |
-| `play <index>`                          | Play a station from the search results          |
-| `pause`                                 | Pause playback                                  |
-| `resume`                                | Resume playback                                 |
-| `stop`                                  | Stop playback                                   |
-
-
-Additional filters and parameters are supported since PX7 Terminal Radio is compatible with the **Radio Browser API**.
-
-You can pass API parameters using the format:
-`--parameter=value`
-
-Example:
-```
->> radio search lofi --limit=5
->> radio search --tag=jazz --country=US
->> radio search chill --order=clickcount
-```
-For the complete list of supported parameters, see the Radio Browser API documentation:  
-https://www.radio-browser.info/
-
-
-### YouTube Commands
-
-PX7 Terminal Radio can also stream audio from YouTube search results directly in the terminal.
+## Radio Commands
 
 | Command                              | Description                               |
 | ------------------------------------ | ----------------------------------------- |
-| `yt search <query>`                  | Search YouTube and stream results         |
-| `yt search <query> --limit=<number>` | Limit the number of search results        |
-| `yt search <query> --no-postfix`     | Search without modifying the query        |
+| `radio search <query>`               | Search radio stations by name             |
+| `radio search --tag=<tag>`           | Filter by tag (e.g., jazz, lofi)          |
+| `radio search --country=<country>`   | Filter by country                         |
+| `radio search --language=<language>` | Filter by language                        |
+| `radio search --limit=<number>`      | Limit number of results                   |
+| `radio search --order=votes`         | Sort results (votes, clickcount, bitrate) |
+| `play <index>`                       | Play selected station                     |
+| `pause`                              | Pause playback                            |
+| `resume`                             | Resume playback                           |
+| `stop`                               | Stop playback                             |
 
-#### Default Query Postfix
+---
 
-By default, the command:
-```
->> yt search <query>
-```
-internally modifies the query:
-```
-query += DEFAULT_QUERY_POSTFIX
-```
-> DEFAULT_QUERY_POSTFIX = " original audio song"
-This helps return better audio-focused results (for example music or long mixes).
+### Advanced Filtering
 
-If you want to search YouTube without modifying the query, use:
+PX7 supports full **Radio Browser API parameters**:
+
 ```
->> yt search <query> --no-postfix
+radio search lofi --limit=5
+radio search --tag=jazz --country=US
+radio search chill --order=clickcount
 ```
-Example:
+
+API Docs: https://www.radio-browser.info/
+
+
+## YouTube Commands
+
+Stream audio directly from YouTube search results:
+
+| Command                          | Description               |
+| -------------------------------- | ------------------------- |
+| `yt search <query>`              | Search and stream audio   |
+| `yt search <query> --limit=<n>`  | Limit results             |
+| `yt search <query> --no-postfix` | Disable query enhancement |
+
+---
+
+### Smart Query Enhancement
+
+By default:
+
 ```
+yt search <query>
+```
+
+Automatically becomes:
+
+```text
+<query> original audio song
+```
+
+This improves audio-focused results (songs, mixes, etc.)
+
+Disable it with:
+
+```
+yt search <query> --no-postfix
+```
+
+---
+
+## 🧠 Example Usage
+
+```
+>> radio search lofi
+>> play 1
 >> yt search joji
->> yt search the weeknd lofi one hour --no-postfix
+>> yt search the weeknd lofi --no-postfix
 ```
 
-## License
+---
 
-This project is licensed under the MIT License.  
+## 📄 License
+
+This project is licensed under the MIT License.
 See the [LICENSE](LICENSE) file for details.

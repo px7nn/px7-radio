@@ -1,5 +1,5 @@
 import sys, threading, time
-from services import youtube_service as ys
+from px7_radio.services import youtube_service as ys
 
 def check_vlc():
     try:
