@@ -1,7 +1,7 @@
 from . import ping, media_manager, help
-from services import radio_service as rs
-from services import youtube_service as ys
-import config
+from px7_radio.services import radio_service as rs
+from px7_radio.services import youtube_service as ys
+import px7_radio.config as config
 
 def handle_cmd(cmd: dict):
     if cmd.get('sys') == "ping":

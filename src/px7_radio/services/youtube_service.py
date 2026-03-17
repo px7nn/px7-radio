@@ -1,6 +1,6 @@
 import yt_dlp, sys, time, threading
 from yt_dlp.utils import DownloadError
-from config import YDL_OPTIONS, DEFAULT_YT_SEARCH_LIMIT, DEFAULT_QUERY_POSTFIX
+from px7_radio.config import YDL_OPTIONS, DEFAULT_YT_SEARCH_LIMIT, DEFAULT_QUERY_POSTFIX
 
 done = True
 text = "Connecting"

@@ -1,6 +1,6 @@
 from . import ping, media_manager
 import sys, os, time, threading
-from config import HIDE_ERR
+from px7_radio.config import HIDE_ERR
 
 done = False
 
