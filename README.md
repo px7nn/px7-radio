@@ -33,17 +33,16 @@ Powered by the **Radio Browser API** and **VLC**, PX7 delivers a fast and minima
 pip install px7-radio
 ```
 
-If the command still doesn't work, you can run:
-```
-python -m px7_radio
-```
-
 ## 🚀 Usage
 
 Start the application:
 
 ```
 px7-radio
+```
+If the command doesn't work, you can run:
+```
+python -m px7_radio
 ```
 
 You will see a prompt:
@@ -106,7 +105,7 @@ yt search <query>
 
 Automatically becomes:
 
-```text
+```
 <query> original audio song
 ```
 
