@@ -4,13 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "px7-radio"
-version = "0.1.1"
+version = "0.1.2"
 description = "Terminal-based internet radio player"
 readme = "README.md"
 requires-python = ">=3.8"
 authors = [
     { name = "px7nn", email = "px7nnn@gmail.com"}
 ]
+license = { text = "MIT" }
 
 dependencies = [
     "requests",
