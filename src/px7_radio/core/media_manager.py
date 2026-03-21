@@ -149,7 +149,7 @@ def stop():
 
 def show_playing(params: dict, expose=False):
     if not data or index == None:
-        print("Error: List Empty:\nUse after:\n\t>> radio search <name>\n\t>> play <index>")
+        print("Error: Empty list/player:\nUse after:\n\t>> radio search <name>\n\t>> play <index>")
         return
     if not params:
         print(f"Title: {data[index].get('name')}")

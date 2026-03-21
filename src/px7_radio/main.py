@@ -1,4 +1,4 @@
-from .core import ui, parser, handleCMD
+from px7_radio.core import ui, parser, handleCMD
 
 def manage_input():
     while True:
