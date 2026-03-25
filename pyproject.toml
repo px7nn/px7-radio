@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "px7-radio"
 version = "0.1.4"
-description = "Terminal-based internet radio player"
+description = "A minimal, fast alternative to heavy music apps — built for the terminal."
 readme = "README.md"
 requires-python = ">=3.8"
 authors = [
