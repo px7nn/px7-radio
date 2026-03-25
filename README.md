@@ -1,13 +1,26 @@
-# 🎧 PX7 Terminal Radio
+<div align="center">
+  
+  <img src="https://github.com/user-attachments/assets/d2737200-ebd8-4736-b460-c9af140e8137" width=400>
+  
+</div>
 
-![PX7 Terminal Radio](https://github.com/user-attachments/assets/d2737200-ebd8-4736-b460-c9af140e8137)
+<div align="center">
 
+  <img src="https://img.shields.io/badge/interface-CLI-black?style=for-the-badge" width=120 height=25>
+  &nbsp;
+  <img src="https://img.shields.io/pypi/dm/px7-radio?style=for-the-badge&color=black" width=210 height=25>
+  &nbsp;
+  <img src="https://img.shields.io/pypi/v/px7-radio?style=for-the-badge&color=1DB954" width=120 height=25>
+
+</div>
+
+# 🎧 PX7 Terminal Radio  
+  
 PX7 Terminal Radio is a lightweight, feature-rich **command-line internet radio player** built in Python.
 
 It lets you **search, stream, and control thousands of radio stations directly from your terminal**, with added support for **streaming audio from YouTube search results**.
 
 Powered by the **Radio Browser API** and **VLC**, PX7 delivers a fast and minimal listening experience without leaving your terminal.
-
 
 ## Features
 
@@ -25,7 +38,7 @@ Powered by the **Radio Browser API** and **VLC**, PX7 delivers a fast and minima
 * **VLC Media Player** (required for audio playback)
 
 
-## 📦 Installation
+## Installation
 
 ### Install via pip (Recommended)
 
@@ -33,7 +46,7 @@ Powered by the **Radio Browser API** and **VLC**, PX7 delivers a fast and minima
 pip install px7-radio
 ```
 
-## 🚀 Usage
+## Usage
 
 Start the application:
 
@@ -100,7 +113,7 @@ Stream audio directly from YouTube search results:
 By default:
 
 ```
-yt search <query>
+>> yt search <query>
 ```
 
 Automatically becomes:
@@ -114,23 +127,19 @@ This improves audio-focused results (songs, mixes, etc.)
 Disable it with:
 
 ```
-yt search <query> --no-postfix
+>> yt search <query> --no-postfix
 ```
+
+<div align="center">
+
+  ## Example Usage
+  
+  <img src=https://github.com/user-attachments/assets/e902155c-580c-4f07-b681-0f2d6e09ca43>
+</div>
 
 ---
 
-## 🧠 Example Usage
+## 📜 License
 
-```
->> radio search lofi
->> play 1
->> yt search joji
->> yt search the weeknd lofi --no-postfix
-```
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
+This project is licensed under the MIT License.  
 See the [LICENSE](LICENSE) file for details.
