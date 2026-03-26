@@ -134,7 +134,7 @@ Disable it with:
 
   ## Example Usage
   
-  <img src=https://github.com/user-attachments/assets/e902155c-580c-4f07-b681-0f2d6e09ca43>
+  <img src="https://github.com/user-attachments/assets/e902155c-580c-4f07-b681-0f2d6e09ca43">
 </div>
 
 ---
