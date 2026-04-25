@@ -6,15 +6,13 @@
 
 <div align="center">
 
-  <img src="https://img.shields.io/badge/interface-CLI-black?style=for-the-badge" width=120 height=25>
+  ![](https://img.shields.io/badge/interface-CLI-black?style=for-the-badge)
   &nbsp;
-  <img src="https://img.shields.io/pypi/dm/px7-radio?style=for-the-badge&color=black" width=210 height=25>
-  &nbsp;
-  <img src="https://img.shields.io/pypi/v/px7-radio?style=for-the-badge&color=1DB954" width=120 height=25>
+  ![](https://img.shields.io/pypi/v/px7-radio?style=for-the-badge&color=1DB954) 
 
 </div>
 
-# 🎧 PX7 Terminal Radio  
+# PX7 Terminal Radio  
   
 PX7 Terminal Radio is a lightweight, feature-rich **command-line internet radio player** built in Python.
 
