@@ -12,6 +12,13 @@ def handle_cmd(cmd: dict):
         print(help.HELP_PAGE)
         return
     
+    elif cmd.get('sys') == "volume":
+        if not cmd.get('action'):
+            media_manager.show_volume()
+        else:
+            media_manager.set_volume(int(cmd.get('action')))
+            
+    
     elif cmd.get('sys') == "yt":
         cmd.pop('sys')
         if cmd.get('action') == "search":
@@ -47,9 +54,6 @@ def handle_cmd(cmd: dict):
 
     elif cmd.get('sys') == "radio":
         cmd.pop('sys')
-        # if cmd.get('action') == "--help":
-        #     print(help.HELP_PAGE)
-        #     return
         if cmd.get('action') == "search":
             cmd.pop('action')
             dat = rs.search(cmd)

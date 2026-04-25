@@ -68,6 +68,13 @@ Adjust Timeout
     >> play <number> --timeout=10
     (Use for slow connections; default is 5s)
 
+Show current volume
+    >> volume
+
+Set volume
+    >> volume <value>
+    (value must be between 0 and 100)
+
 Playback Management
     >> pause            Pause the current stream
     >> resume           Resume the current stream

@@ -35,6 +35,10 @@ class Player:
         self.Player.play()
     def stop(self):
         self.Player.stop()
+    def set_volume(self, vol):
+        self.Player.audio_set_volume(vol)
+    def get_volume(self):
+        return self.Player.audio_get_volume()
 
     def get_player(self):
         return self.Player
@@ -161,3 +165,15 @@ def show_playing(params: dict, expose=False):
     if params.get("expose"):
         params.pop('expose')
         show_playing({}, True)
+
+def set_volume(vol: int):
+    if vol < 0 or vol > 100:
+        print("Invalid Volume.")
+        return
+
+    player.set_volume(vol)
+    time.sleep(0.1)
+    show_volume()
+
+def show_volume():
+    print(f"Volume: {player.get_volume()}")

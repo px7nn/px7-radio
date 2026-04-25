@@ -3,6 +3,7 @@ HIDE_ERR = True
 
 API_URL = "https://de1.api.radio-browser.info/json/stations/search"
 
+DEFAULT_PLAYER_VOLUME = 70
 DEFAULT_TIMEOUT = 5
 DEFAULT_RADIO_SEARCH_LIMIT = 10
 DEFAULT_YT_SEARCH_LIMIT = 5

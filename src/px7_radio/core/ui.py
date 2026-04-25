@@ -1,6 +1,6 @@
 from . import ping, media_manager
 import sys, os, time, threading
-from px7_radio.config import HIDE_ERR
+from px7_radio.config import HIDE_ERR, DEFAULT_PLAYER_VOLUME
 
 done = False
 
@@ -21,6 +21,7 @@ def welcome():
         devnull = open(os.devnull, "w")
         sys.stderr = devnull
     connection_status()
+    media_manager.set_volume(DEFAULT_PLAYER_VOLUME)
     print(f"\nBasic commands:\n\t>> radio search <station name>\n\t>> play <station no.>\n\t>> pause\n\t>> ping\nFor more commands try:\n\t>> help\n")
 
 
